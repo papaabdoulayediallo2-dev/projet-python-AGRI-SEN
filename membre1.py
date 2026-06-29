@@ -1,5 +1,5 @@
 # Liste globale qui stockera tous les producteurs
-# Chaque producteur est un dictionnaire : {"nom": ..., "recoltes": []}
+
 producteurs = []
 
 
