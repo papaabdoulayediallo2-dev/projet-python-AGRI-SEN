@@ -1,3 +1,5 @@
+from membre1 import producteurs, rechercher_producteur
+
 # Liste des produits autorisés dans la coopérative
 PRODUITS_VALIDES = ["Mil", "Maïs", "Riz", "Arachide"]
 
