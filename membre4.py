@@ -1,43 +1,35 @@
-producteurs_data = {
-    "Moussa": 2500,
-    "Fatou": 1800,
-    "Amadou": 2200,
-    "Awa": 1500
-}
-
-def meilleur_producteur(donnees_cooperative):
-    if not donnees_cooperative:
+def meilleur_producteur(liste_producteurs):
+    if not liste_producteurs:
         print("Aucun producteur enregistré.")
         return
 
     nom_meilleur = ""
-    max_production = -1
+    max_production = -1.0
     
-    for producteur, production in donnees_cooperative.items():
-        if production > max_production:
-            max_production = production
-            nom_meilleur = producteur
+    for p in liste_producteurs:
+        total_producteur = 0.0
+        for r in p["recoltes"]:
+            total_producteur += r["quantite"]
+            
+        if total_producteur > max_production:
+            max_production = total_producteur
+            nom_meilleur = p["nom"]
             
     print(f"Meilleur producteur : {nom_meilleur}")
     print(f"Production : {max_production} kg")
 
 
-def moyenne_producteur(donnees_cooperative):
-    if not donnees_cooperative:
+def moyenne_producteur(liste_producteurs):
+    if not liste_producteurs:
         print("Aucun producteur pour calculer la moyenne.")
         return
 
-    total_general = 0
-    nombre_producteurs = 0
+    total_general = 0.0
+    nombre_producteurs = len(liste_producteurs)
     
-    for production in donnees_cooperative.values():
-        total_general += production
-        nombre_producteurs += 1
-        
+    for p in liste_producteurs:
+        for r in p["recoltes"]:
+            total_general += r["quantite"]
+            
     moyenne = total_general / nombre_producteurs
     print(f"Production moyenne par producteur : {moyenne:.2f} kg")
-
-
-meilleur_producteur(producteurs_data)
-print("-" * 30)
-moyenne_producteur(producteurs_data)
